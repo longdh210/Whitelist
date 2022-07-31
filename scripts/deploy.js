@@ -1,3 +1,4 @@
+const fs = require("fs");
 const hre = require("hardhat");
 
 async function main() {
@@ -6,11 +7,14 @@ async function main() {
 
     await whitelist.deployed();
 
-    console.log("Whitelist deploy to:", whitelist.address);
+    console.log("Whitelist deployed to:", whitelist.address);
+
+    fs.writeFileSync(
+        "./src/config.js",
+        `export const whitelistAddress = "${whitelist.address}"`
+    );
 }
 
-// We recommend this pattern to be able to use async/await everywhere
-// and properly handle errors.
 main().catch((error) => {
     console.error(error);
     process.exitCode = 1;

@@ -22,7 +22,7 @@ contract Whitelist {
         _;
     }
 
-    function addUser(address _address) public onlyOwner {
+    function addUser(address _address) public {
         whitelistedAddresses[_address] = true;
         emit AddedToWhitelist(_address);
     }
